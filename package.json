@@ -1,0 +1,19 @@
+{
+  "name": "generic-form-sender-v2",
+  "version": "1.0.0",
+  "description": "Express based app to capture form data and send it to you",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cds-snc/generic-form-sender-v2.git"
+  },
+  "author": "Stephen McMurtry",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cds-snc/generic-form-sender-v2/issues"
+  },
+  "homepage": "https://github.com/cds-snc/generic-form-sender-v2#readme"
+}
