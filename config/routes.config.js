@@ -4,6 +4,7 @@ const routes = [
   { name: 'add-form', path: { en: '/add-form', fr: '/fr-add-form' } },
   { name: 'my-forms', path: { en: '/my-forms', fr: '/fr-my-forms' } },
   { name: 'personal', path: { en: '/personal', fr: '/personnel' } },
+  { name: 'validate', path: { en: '/validate', fr: '/fr-validate' } },
 ]
 
 const locales = ['en', 'fr']
