@@ -5,13 +5,14 @@ const uuidv4 = require('uuid/v4');
 
 const saveToDb = async (req, res, next) => {
   var sessionData = routeUtils.getViewData(req).data;
+  console.log(sessionData.redirect)
   const now = new Date();
   const entry = new Form({
     form_id: uuidv4(),
     user_id: "steve",
     name: sessionData.name,
     email: sessionData.email,
-    redirect: sessionData.redirect,
+    redirect_url: sessionData.redirect_url,
     created_at: now.toString(),
   })
   entry.save()

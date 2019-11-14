@@ -13,7 +13,7 @@ const Schema = {
       options: { min: 3, max: 200 },
     },
   },
-  redirect: {
+  redirect_url: {
     isLength: {
       errorMessage: 'errors.redirect.length',
       options: { min: 3, max: 200 },
