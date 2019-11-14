@@ -1,9 +1,21 @@
 /* istanbul ignore file */
 
 const Schema = {
-  firstname: {
+  name: {
     isLength: {
-      errorMessage: 'errors.firstname.length',
+      errorMessage: 'errors.name.length',
+      options: { min: 3, max: 200 },
+    },
+  },
+  email: {
+    isLength: {
+      errorMessage: 'errors.email.length',
+      options: { min: 3, max: 200 },
+    },
+  },
+  redirect: {
+    isLength: {
+      errorMessage: 'errors.redirect.length',
       options: { min: 3, max: 200 },
     },
   },

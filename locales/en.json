@@ -57,5 +57,8 @@
   "form.name.hint": "e.g. PSPC feedback",
   "form.email.hint": "This is where submitted forms will be sent",
   "form.redirect.desc": "Redirect URL",
-  "form.redirect.hint": "What URL should the user see after they submit your form?"
+  "form.redirect.hint": "What URL should the user see after they submit your form?",
+  "errors.firstname.length": "errors.firstname.length",
+  "errors.name.length": "errors.name.length",
+  "errors.redirect.length": "errors.redirect.length"
 }
