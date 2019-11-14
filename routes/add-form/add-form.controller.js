@@ -1,13 +1,14 @@
 const { routeUtils } = require('./../../utils')
 const { Schema } = require('./schema.js')
-const { Submission } = require('../../db/model')
+const { Form } = require('../../db/model')
 const uuidv4 = require('uuid/v4');
 
 const saveToDb = async (req, res, next) => {
   var sessionData = routeUtils.getViewData(req).data;
   const now = new Date();
-  const entry = new Submission({
-    id: uuidv4(),
+  const entry = new Form({
+    form_id: uuidv4(),
+    user_id: "steve",
     name: sessionData.name,
     email: sessionData.email,
     redirect: sessionData.redirect,

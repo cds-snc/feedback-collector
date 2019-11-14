@@ -1,7 +1,8 @@
 const dynamoose = require('dynamoose')
 
-const Submission = dynamoose.model('Forms', {
-  id: String,
+const Form = dynamoose.model('Forms', {
+  form_id: String,
+  user_id: String,
   name: String,
   email: String,
   redirect: String,
@@ -9,5 +10,5 @@ const Submission = dynamoose.model('Forms', {
 })
 
 module.exports = {
-  Submission,
+    Form,
 }

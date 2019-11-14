@@ -60,5 +60,7 @@
   "form.redirect.hint": "What URL should the user see after they submit your form?",
   "errors.firstname.length": "errors.firstname.length",
   "errors.name.length": "errors.name.length",
-  "errors.redirect.length": "errors.redirect.length"
+  "errors.redirect.length": "errors.redirect.length",
+  "my-forms.title": "My forms",
+  "form.firstname.desc": "form.firstname.desc"
 }
