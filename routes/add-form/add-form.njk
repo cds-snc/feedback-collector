@@ -1,0 +1,18 @@
+{% extends "base.njk" %}
+
+{% block content %}
+
+    <h1>{{ __('add-form.title') }}</h1>
+
+    <div>
+        <form method="post">
+            <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+            
+            {{ textInput('form.name', 'form.name.desc', {hint: 'form.name.hint', required: true}) }}
+            {{ textInput('form.email', 'form.email.desc', {hint: 'form.email.hint', required: true}) }}
+            {{ textInput('form.redirect', 'form.redirect.desc', {hint: 'form.redirect.hint', required: true}) }}
+            {{ formButtons() }}
+        </form>
+    </div>
+
+{% endblock %}
