@@ -41,22 +41,16 @@ const sendEmail = async (req, res, next) => {
 }
 
 const saveData = async (req, res, next) => {
-  Object.keys(req.body)
-  const responseSchema = new mongoose.Schema(
-    {
-      form_id: String,
-      user_id: String,
-      name: String,
-      email: String,
-      redirect_url: String,
-      created_at: Date,
-      code: String,
-      confirmed: Boolean,
-    }
-  );
+  console.log(req.body)
+  const responseSchema = new mongoose.Schema({
+    response: Object,
+  });
   
-  const Responses = mongoose.model("Responses", responseSchema);
-  Responses.
+  const Response = mongoose.model("Response", responseSchema);
+  const entry = new Response({
+    response: req.body,
+  })
+  entry.save()
   next()
 }
 
@@ -68,7 +62,7 @@ module.exports = (app, route) => {
 
   route.draw(app)
     .post(
-      // saveData,
+      saveData,
       // sendEmail,
       doRedirect,
       // route.applySchema(Schema), route.doRedirect()
