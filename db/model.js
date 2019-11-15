@@ -7,9 +7,9 @@ const formSchema = new mongoose.Schema(
     name: String,
     email: String,
     redirect_url: String,
-    created_at: String,
+    created_at: Date,
     code: String,
-    confirmed: String,
+    confirmed: Boolean,
   }
 );
 

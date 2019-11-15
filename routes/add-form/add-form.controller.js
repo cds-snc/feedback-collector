@@ -19,9 +19,9 @@ const saveToDb = async (req, res, next) => {
     name: sessionData.name,
     email: sessionData.email,
     redirect_url: sessionData.redirect_url,
-    created_at: now.toString(),
+    created_at: now,
     code: sessionData.code,
-    confirmed: "false",
+    confirmed: false,
   })
   entry.save()
   next()
@@ -32,7 +32,7 @@ const sendEmail = async (req, res, next) => {
 
   const { email, name, code } = sessionData
 
-  const link = `https://generic-form-sender.herokuapp.com/validate?code=${code}`
+  const link = `https://generic-form-sender.herokuapp.com/en/validate?code=${code}`
 
   const templateId = "36d29466-e751-48c2-a9da-fd73c0082a5b"
 
