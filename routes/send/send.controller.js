@@ -1,4 +1,3 @@
-const { routeUtils } = require('./../../utils')
 const NotifyClient = require("notifications-node-client").NotifyClient;
 const baseUrl = "https://api.notification.alpha.canada.ca";
 const notifyClient = new NotifyClient(baseUrl, process.env.NOTIFY_API_KEY)
@@ -21,12 +20,12 @@ const main = async (req, res, next) => {
   })
   entry.save()
 
-  await Form.find({ form_id: req.query.id }).exec((err, forms) => {
+  Form.find({ form_id: req.query.id }).exec((err, forms) => {
     if(err) {
       console.log(err)
     }
-    const { name, email, redirect_url, confirmed } = forms[0]
-
+    const { name, email, confirmed } = forms[0]
+    const redirect = forms[0].redirect_url
     const content = Object.keys(body).map((key, _index) => `- ${key}: ${body[key]}`).join("\n");
     var options = {}
     if (confirmed) {
@@ -41,8 +40,7 @@ const main = async (req, res, next) => {
 
     notifyClient.sendEmail(templateId, email, options);
 
-    return res.redirect(redirect_url)
-    // return res.redirect("start")
+    return res.redirect(redirect)
   })
 }
 
