@@ -5,19 +5,23 @@ module.exports = (app, route) => {
   const name = route.name
 
   route.draw(app)
-    .get((req, res) => {
+    .get(async (req, res) => {
+      console.log("hi")
       if (!req.query.code) {
+        console.log("a")
         res.render('404')
         return
       }
       var nForms = 0
-      Form.find({ 'code': req.query.code }, (err, forms) => {
+      console.log(req.query.code)
+      await Form.find({ 'code': req.query.code }, (err, forms) => {
         if(err) {
           console.log(err)
         } 
         nForms = forms.length
       })
       if (nForms < 1) {
+        console.log("b")
         res.render('404')
         return
       }
