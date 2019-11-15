@@ -1,5 +1,4 @@
 const { routeUtils, getClientJs } = require('./../../utils')
-const { Schema } = require('./schema.js')
 
 module.exports = (app, route) => {
   route
@@ -11,5 +10,5 @@ module.exports = (app, route) => {
         routeUtils.getViewData(req, { jsFiles: js ? [js] : false }),
       )
     })
-    .post(route.applySchema(Schema), route.doRedirect())
+    .post(route.applySchema({}), route.doRedirect())
 }
