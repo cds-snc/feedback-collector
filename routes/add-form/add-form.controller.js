@@ -2,10 +2,9 @@ const { routeUtils, saveSessionData } = require('./../../utils')
 const { Schema } = require('./schema.js')
 const { Form } = require('../../db/model')
 const uuidv4 = require('uuid/v4');
-// const NotifyClient = require("notifications-node-client").NotifyClient;
-// const key = "abc" // functions.config().notification.key;
-// const baseUrl = "https://api.notification.alpha.canada.ca";
-// const notifyClient = new NotifyClient(baseUrl, key)
+const NotifyClient = require("notifications-node-client").NotifyClient;
+const baseUrl = "https://api.notification.alpha.canada.ca";
+const notifyClient = new NotifyClient(baseUrl, process.env.NOTIFY_API_KEY)
 
 const saveToDb = async (req, res, next) => {
   req.body.form_id = uuidv4();
@@ -32,22 +31,19 @@ const sendEmail = async (req, res, next) => {
   var sessionData = routeUtils.getViewData(req).data;
 
   const { email, name, code } = sessionData
-  console.log(email, name, code)
-  // const link = req.protocol + '://' + req.get('Host') + req.url;
-  // console.log(link)
 
-//   const link = `https://notification-demo-service.firebaseapp.com/validate?code=${code}`
+  const link = `https://generic-form-sender.herokuapp.com/validate?code=${code}`
 
-//   const templateId = "36d29466-e751-48c2-a9da-fd73c0082a5b"
+  const templateId = "36d29466-e751-48c2-a9da-fd73c0082a5b"
 
-//   const options = {
-//     personalisation: {
-//       name,
-//       link,
-//     },
-//   }
+  const options = {
+    personalisation: {
+      name,
+      link,
+    },
+  }
 
-//   notifyClient.sendEmail(templateId, email, options);
+  notifyClient.sendEmail(templateId, email, options);
 
   next()
 }
