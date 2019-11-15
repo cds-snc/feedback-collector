@@ -7,11 +7,10 @@ module.exports = (app, route) => {
 
   route.draw(app)
     .get((req, res) => {
-      Form.query("user_id").eq("steve").exec((err, forms) => {
+      Form.find({ 'user_id': 'steve' }).exec(function (err, forms) {
         if(err) {
           console.log(err)
         }
-        // console.log(forms)
         res.render(name, routeUtils.getViewData(req, {forms: forms}))
       })
       

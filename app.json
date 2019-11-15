@@ -2,13 +2,10 @@
   "name": "node-starter",
   "description": "",
   "env": {
-    "AWS_ACCESS_KEY_ID": {
-      "required": true
-    },
-    "AWS_SECRET_ACCESS_KEY": {
-      "required": true
-    },
     "NOTIFY_API_KEY": {
+      "required": true
+    },
+    "MONGO_URL": {
       "required": true
     },
   },
