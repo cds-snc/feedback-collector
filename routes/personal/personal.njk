@@ -7,8 +7,8 @@
     <div>
         <p>{{ __('personal.intro') }}</p>
     </div>
-    {# <form method="post" action="https://generic-form-sender.herokuapp.com/en/send?id=f3707c73-3bae-453f-856e-65ff8a90a9c4"> #}
-    <form method="post" action="http://localhost:3000/en/send?id=f3707c73-3bae-453f-856e-65ff8a90a9c4">
+    <form method="post" action="https://generic-form-sender.herokuapp.com/en/send?id=f3707c73-3bae-453f-856e-65ff8a90a9c4">
+    {# <form method="post" action="http://localhost:3000/en/send?id=f3707c73-3bae-453f-856e-65ff8a90a9c4"> #}
         <input type="hidden" name="_csrf" value="{{ csrfToken }}">
 
         {{ textInput('fullname', 'form.fullname', { class: "w-3-4" }) }}

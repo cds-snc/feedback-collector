@@ -11,7 +11,7 @@
             {{ textInput('name', 'form.name.desc', {hint: 'form.name.hint', required: true}) }}
             {{ textInput('email', 'form.email.desc', {hint: 'form.email.hint', required: true}) }}
             {{ textInput('redirect_url', 'form.redirect.desc', {hint: 'form.redirect.hint', required: true}) }}
-            {{ formButtons() }}
+            {{ formButtons(submitButtonText = 'Add form', cancelUrl = 'my-forms') }}
         </form>
     </div>
 
