@@ -62,5 +62,6 @@
   "errors.name.length": "errors.name.length",
   "errors.redirect.length": "errors.redirect.length",
   "my-forms.title": "My forms",
-  "form.firstname.desc": "form.firstname.desc"
+  "form.firstname.desc": "form.firstname.desc",
+  "validate.title": "Your email address has been confirmed"
 }

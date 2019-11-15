@@ -22,6 +22,7 @@ const saveToDb = async (req, res, next) => {
     redirect_url: sessionData.redirect_url,
     created_at: now.toString(),
     code: sessionData.code,
+    confirmed: "false",
   })
   entry.save()
   next()

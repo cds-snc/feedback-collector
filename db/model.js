@@ -8,6 +8,7 @@ const Form = dynamoose.model('Forms', {
   redirect_url: String,
   created_at: String,
   code: String,
+  confirmed: String,
 })
 
 module.exports = {
