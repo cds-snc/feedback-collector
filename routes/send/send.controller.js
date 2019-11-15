@@ -5,7 +5,8 @@ const mongoose = require("mongoose");
 const { Form } = require('../../db/model')
 
 const main = async (req, res, next) => {
-  console.log(req.query.id)
+  res.set('Access-Control-Allow-Origin', '*');
+
   const body = req.body
 
   const responseSchema = new mongoose.Schema({

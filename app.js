@@ -14,6 +14,7 @@ const { addNunjucksFilters } = require('./filters')
 const csp = require('./config/csp.config')
 const csrf = require('csurf')
 const mongoose = require('mongoose')
+const passport = require('passport');
 
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true });
 var db = mongoose.connection;
@@ -33,6 +34,9 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser(process.env.app_session_secret))
 app.use(require('./config/i18n.config').init)
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // CSRF setup
 app.use(
