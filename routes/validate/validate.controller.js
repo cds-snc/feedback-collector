@@ -6,28 +6,28 @@ module.exports = (app, route) => {
 
   route.draw(app)
     .get((req, res) => {
-      // if (!req.query.code) {
-      //   route.doRedirect("invalid")(req, res)
-      //   return
-      // }
-      const entry = new Form({
-        confirmed: true,
+      if (!req.query.code) {
+        res.render('404')
+        return
+      }
+      var nForms = 0
+      Form.find({ 'code': req.query.code }, (err, forms) => {
+        if(err) {
+          console.log(err)
+        } 
+        nForms = forms.length
       })
+      if (nForms < 1) {
+        res.render('404')
+        return
+      }
+
       Form.findOneAndUpdate({ 'code': req.query.code }, {confirmed: true}, (err, form) => {
         if(err) {
           console.log(err)
-        }
-        console.log(form)
+        } 
+        res.render(name, routeUtils.getViewData(req, {}))
       })
-      // entry.save()
-      // Form.update({user_id: "steve", form_id: req.query.form_id, confirmed: "true"}, function (err) {
-      //   if (err) {
-      //     return console.log(err);
-      //   }
-      
-      //   console.log('confirmed');
-      // })
-      res.render(name, routeUtils.getViewData(req, {}))
 
     })
 }
