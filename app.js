@@ -15,6 +15,7 @@ const csp = require('./config/csp.config')
 const csrf = require('csurf')
 const mongoose = require('mongoose')
 const passport = require('passport');
+const auth = require('./utils/auth')
 
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true });
 var db = mongoose.connection;
@@ -29,14 +30,14 @@ if (!locales) locales = ['en', 'fr']
 // initialize application.
 const app = express()
 
+auth(passport)
+app.use(passport.initialize())
+
 // general app configuration.
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser(process.env.app_session_secret))
 app.use(require('./config/i18n.config').init)
-
-app.use(passport.initialize());
-app.use(passport.session());
 
 // CSRF setup
 app.use(
@@ -70,6 +71,47 @@ app.use(helmet())
 app.use(helmet.contentSecurityPolicy({ directives: csp }))
 // gzip response body compression.
 app.use(compression())
+
+// auth stuff
+// app.use(cookieSession({
+//   name: 'session',
+//   keys: ['SECRECT KEY'],
+//   maxAge: 24 * 60 * 60 * 1000,
+// }));
+// app.use(cookieParser());
+
+app.get('/', (req, res) => {
+  if (req.session.token) {
+      res.cookie('token', req.session.token);
+      res.json({
+          status: 'session cookie set',
+      });
+  } else {
+      res.cookie('token', '')
+      res.json({
+          status: 'session cookie not set',
+      });
+  }
+});
+
+app.get('/logout', (req, res) => {
+  req.logout();
+  req.session = null;
+  res.redirect('/');
+});
+
+app.get('/auth/google', passport.authenticate('google', {
+  scope: ['https://www.googleapis.com/auth/userinfo.profile'],
+}));
+
+app.get('/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/' }),
+  (req, res) => {
+      console.log(req.user.token);
+      req.session.token = req.user.token;
+      res.redirect('/en/start');
+  }
+);
 
 // Adding values/functions to app.locals means we can access them in our templates
 app.locals.GITHUB_SHA = process.env.GITHUB_SHA || null
