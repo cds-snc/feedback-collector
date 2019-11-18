@@ -110,7 +110,7 @@ app.get('/auth/google/callback',
       console.log(req.user.token);
       req.session.token = req.user.token;
       res.redirect('/en/start');
-  }
+  },
 );
 
 // Adding values/functions to app.locals means we can access them in our templates
