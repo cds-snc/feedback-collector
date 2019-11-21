@@ -15,8 +15,9 @@ module.exports = (app, route) => {
   .get(
     checkAuth,
     (req, res) => {
+      // var sessionData = routeUtils.getViewData(req).data;
       const js = getClientJs(req, route.name)
-      Form.find({ 'user_id': 'steve' }).exec(function (err, forms) {
+      Form.find({ 'user_id': req.session.profile.id }).exec(function (err, forms) {
         if(err) {
           console.log(err)
         }

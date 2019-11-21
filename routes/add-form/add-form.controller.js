@@ -11,11 +11,11 @@ const saveToDb = async (req, res, next) => {
   req.body.code = uuidv4();
   saveSessionData(req)
   var sessionData = routeUtils.getViewData(req).data;
-
+  
   const now = new Date();
   const entry = new Form({
     form_id: sessionData.form_id,
-    user_id: "steve",
+    user_id: req.session.profile.id,
     name: sessionData.name,
     email: sessionData.email,
     redirect_url: sessionData.redirect_url,
