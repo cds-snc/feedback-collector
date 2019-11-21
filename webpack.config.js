@@ -7,6 +7,7 @@ module.exports = (env, argv) => {
     entry: {
       styles: './assets/scss/app.scss',
       personal: './routes/personal/js/personal.js',
+      "my-forms": './routes/my-forms/js/my-forms.js',
     },
     output: {
       filename: 'js/[name].[chunkhash].js',
