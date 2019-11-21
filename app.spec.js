@@ -11,6 +11,7 @@ jest.mock('./config/routes.config', () => {
 })
 
 test('Server can request first route and receive 200 response', async () => {
+
   const response = await request(app).get(routes[0].path.en)
-  expect(response.statusCode).toBe(200)
+  expect(response.statusCode).toBe(302)
 })

@@ -72,28 +72,6 @@ app.use(helmet.contentSecurityPolicy({ directives: csp }))
 // gzip response body compression.
 app.use(compression())
 
-// auth stuff
-// app.use(cookieSession({
-//   name: 'session',
-//   keys: ['SECRECT KEY'],
-//   maxAge: 24 * 60 * 60 * 1000,
-// }));
-// app.use(cookieParser());
-
-// app.get('/', (req, res) => {
-//   if (req.session.token) {
-//       res.cookie('token', req.session.token);
-//       res.json({
-//           status: 'session cookie set',
-//       });
-//   } else {
-//       res.cookie('token', '')
-//       res.json({
-//           status: 'session cookie not set',
-//       });
-//   }
-// });
-
 app.get('/logout', (req, res) => {
   req.logout();
   req.session = null;
