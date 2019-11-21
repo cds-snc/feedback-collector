@@ -64,5 +64,8 @@
   "my-forms.title": "My forms",
   "form.firstname.desc": "form.firstname.desc",
   "validate.title": "Your email address has been confirmed",
-  "Add form": "Add form"
+  "Add form": "Add form",
+  "login.title": "login.title",
+  "login.intro": "login.intro",
+  "login": "Sign in"
 }

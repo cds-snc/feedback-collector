@@ -15,6 +15,7 @@ const csp = require('./config/csp.config')
 const csrf = require('csurf')
 const mongoose = require('mongoose')
 const passport = require('passport');
+const { initAuth } = require('./utils')
 
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true });
 var db = mongoose.connection;
@@ -29,14 +30,14 @@ if (!locales) locales = ['en', 'fr']
 // initialize application.
 const app = express()
 
+initAuth(passport)
+app.use(passport.initialize())
+
 // general app configuration.
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser(process.env.app_session_secret))
 app.use(require('./config/i18n.config').init)
-
-app.use(passport.initialize());
-app.use(passport.session());
 
 // CSRF setup
 app.use(
@@ -70,6 +71,30 @@ app.use(helmet())
 app.use(helmet.contentSecurityPolicy({ directives: csp }))
 // gzip response body compression.
 app.use(compression())
+
+app.get('/logout', (req, res) => {
+  req.logout();
+  req.session = null;
+  res.redirect('/');
+});
+
+app.get(
+  "/auth/google",
+  passport.authenticate("google", {
+    scope: ["profile"],
+  }),
+)
+
+app.get(
+  "/auth/google/callback",
+  passport.authenticate("google", { failureRedirect: "/auth/google" }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    req.session.profile = req.user.profile;
+    req.session.token = req.user.token;
+    res.redirect("/");
+  },
+);
 
 // Adding values/functions to app.locals means we can access them in our templates
 app.locals.GITHUB_SHA = process.env.GITHUB_SHA || null
