@@ -1,0 +1,24 @@
+{% macro listForm(form) %}
+    <!-- start list item -->
+    <div class="list-item">
+        <h2 class="my-1 text-blue">{{form.name}}</h2>
+        <div class="location my-0 text-lg text-gray-800">
+            <div><span class="font-bold">Form ID: </span>{{form.form_id}}</div>
+            <div><span class="font-bold">Email:</span> {{form.email}}</div>
+            <div><span class="font-bold">Redirect URL:</span> {{form.redirect_url}}</div>
+            <div><span class="font-bold">Confirmed?:</span>                     
+                {% if form.confirmed %}
+                    Yes
+                {% else %}
+                    No
+                {% endif %}
+            </div>
+            <div><span class="font-bold">Created at:</span> <span class="date">{{form.created_at}}</span></div>
+            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                Delete
+            </button>
+        </div>
+        <hr class="list-item-line my-6" />
+    </div>
+    <!-- end list item -->
+{% endmacro %}

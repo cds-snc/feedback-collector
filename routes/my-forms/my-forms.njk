@@ -2,45 +2,13 @@
 
 {% block content %}
     <a href="/logout">Logout</a>
+    <a href="add-form">Add a form</a>
 
     <h1>{{ __('my-forms.title') }}</h1>
-    <a href="add-form">Add a form</a>
-    <table class="table-auto w-full">
-        <thead>
-        <tr>
-        <th class="px-4 py-2">ID</th>
-            <th class="px-4 py-2">Name</th>
-            <th class="px-4 py-2">Email</th>
-            <th class="px-4 py-2">Redirect</th>
-            <th class="px-4 py-2">Confirmed</th>
-            <th class="px-4 py-2">Created at</th>
-            <th class="px-4 py-2">Delete</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for form in forms %}
-            <tr>
-                <td class="border px-4 py-2">{{form.form_id}}</td>
-                <td class="border px-4 py-2">{{form.name}}</td>
-                <td class="border px-4 py-2">{{form.email}}</td>
-                <td class="border px-4 py-2">{{form.redirect_url}}</td>
-                <td class="border px-4 py-2">
-                    {% if form.confirmed %}
-                    Confirmed
-                    {% else %}
-                    Awaiting confirmation
-                    {% endif %}
-                </td>
-                <td class="border px-4 py-2 date">{{form.created_at}}</td>
-                <td class="border px-4 py-2">
-                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
-                    Delete
-                </button>
-                </td>
-            </tr>
-        {% endfor %}
 
-        </tbody>
-    </table>
+    {% for form in forms %}
+        {{listForm(form) }}
+    {% endfor %}
+
 
 {% endblock %}
