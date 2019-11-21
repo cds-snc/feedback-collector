@@ -1,4 +1,4 @@
-const { routeUtils, saveSessionData } = require('./../../utils')
+const { routeUtils, saveSessionData, checkAuth } = require('./../../utils')
 const { Schema } = require('./schema.js')
 const { Form } = require('../../db/model')
 const uuidv4 = require('uuid/v4');
@@ -52,7 +52,8 @@ module.exports = (app, route) => {
   const name = route.name
   
   route.draw(app)
-    .get((req, res) => {
+    .get(checkAuth,
+      (req, res) => {
       res.render(name, routeUtils.getViewData(req, {}))
     })
     .post(

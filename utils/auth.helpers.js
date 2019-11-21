@@ -1,5 +1,5 @@
-const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-module.exports = (passport) => {
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const initAuth = (passport) => {
     passport.serializeUser((user, done) => {
         done(null, user);
     });
@@ -18,3 +18,15 @@ module.exports = (passport) => {
             });
         }));
 };
+
+const checkAuth = (req, res, next) => {
+    if (!req.session.token) {
+        return res.redirect(res.locals.route.get("login").url(req.locale))
+    }
+    next()
+}
+
+module.exports = {
+    initAuth: initAuth,
+    checkAuth: checkAuth,
+}

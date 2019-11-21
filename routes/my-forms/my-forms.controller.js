@@ -1,6 +1,5 @@
-const { routeUtils } = require('./../../utils')
+const { routeUtils, checkAuth } = require('./../../utils')
 const { Form } = require('../../db/model')
-const passport = require('passport')
 
 // const deleteForm = (req, res) => {
   // req.body
@@ -9,10 +8,12 @@ const passport = require('passport')
 module.exports = (app, route) => {
   const name = route.name
 
+  // redirect from "/" → "my-forms"
+  app.get('/', (req, res) => res.redirect(route.path[req.locale]))
+
   route.draw(app)
-  
   .get(
-    passport.authenticate('google', { failureRedirect: '/' }),
+    checkAuth,
     (req, res) => {
       Form.find({ 'user_id': 'steve' }).exec(function (err, forms) {
         if(err) {

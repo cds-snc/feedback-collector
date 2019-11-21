@@ -15,7 +15,7 @@ const csp = require('./config/csp.config')
 const csrf = require('csurf')
 const mongoose = require('mongoose')
 const passport = require('passport');
-const auth = require('./utils/auth')
+const { initAuth } = require('./utils')
 
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true });
 var db = mongoose.connection;
@@ -30,7 +30,7 @@ if (!locales) locales = ['en', 'fr']
 // initialize application.
 const app = express()
 
-auth(passport)
+initAuth(passport)
 app.use(passport.initialize())
 
 // general app configuration.
@@ -80,19 +80,19 @@ app.use(compression())
 // }));
 // app.use(cookieParser());
 
-app.get('/', (req, res) => {
-  if (req.session.token) {
-      res.cookie('token', req.session.token);
-      res.json({
-          status: 'session cookie set',
-      });
-  } else {
-      res.cookie('token', '')
-      res.json({
-          status: 'session cookie not set',
-      });
-  }
-});
+// app.get('/', (req, res) => {
+//   if (req.session.token) {
+//       res.cookie('token', req.session.token);
+//       res.json({
+//           status: 'session cookie set',
+//       });
+//   } else {
+//       res.cookie('token', '')
+//       res.json({
+//           status: 'session cookie not set',
+//       });
+//   }
+// });
 
 app.get('/logout', (req, res) => {
   req.logout();
@@ -100,16 +100,21 @@ app.get('/logout', (req, res) => {
   res.redirect('/');
 });
 
-app.get('/auth/google', passport.authenticate('google', {
-  scope: ['https://www.googleapis.com/auth/userinfo.profile'],
-}));
+app.get(
+  "/auth/google",
+  passport.authenticate("google", {
+    scope: ["profile"],
+  }),
+)
 
-app.get('/auth/google/callback',
-  passport.authenticate('google', { failureRedirect: '/' }),
-  (req, res) => {
-      console.log(req.user.token);
-      req.session.token = req.user.token;
-      res.redirect('/en/start');
+app.get(
+  "/auth/google/callback",
+  passport.authenticate("google", { failureRedirect: "/auth/google" }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    req.session.profile = req.user.profile;
+    req.session.token = req.user.token;
+    res.redirect("/");
   },
 );
 
