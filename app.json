@@ -8,6 +8,12 @@
     "MONGO_URL": {
       "required": true
     },
+    "GOOGLE_CLIENT_ID": {
+      "required": true
+    },
+    "GOOGLE_CLIENT_SECRET": {
+      "required": true
+    },
   },
   "formation": {},
   "addons": [],

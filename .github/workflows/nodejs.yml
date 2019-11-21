@@ -25,7 +25,9 @@ jobs:
       env:
         CI: true
         NOTIFY_API_KEY: ${{ secrets.NOTIFY_API_KEY }}
-        MONGO_URL: ${{ secrets.NOTIFY_API_KEY }}
+        MONGO_URL: ${{ secrets.MONGO_URL }}
+        GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+        GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
     - name: npm lint
       run: |
         npm run lint
