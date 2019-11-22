@@ -13,10 +13,16 @@ const Schema = {
       options: { min: 3, max: 200 },
     },
   },
-  redirect_url: {
-    isLength: {
-      errorMessage: 'errors.redirect.length',
-      options: { min: 3, max: 200 },
+  redirect: {
+    custom: {
+      options: (value, { req }) => {
+        const redirect = req.body.redirect
+        if (!redirect) {
+          return false
+        }
+        return true
+      },
+      errorMessage: 'errors.redirect',
     },
   },
 }

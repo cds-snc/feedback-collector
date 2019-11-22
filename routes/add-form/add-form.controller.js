@@ -11,16 +11,18 @@ const saveToDb = async (req, res, next) => {
   req.body.code = uuidv4();
   saveSessionData(req)
   var sessionData = routeUtils.getViewData(req).data;
-  
+  // console.log("session data: ", sessionData)
+  // console.log("req.body: ", req.body)
   const now = new Date();
   const entry = new Form({
     form_id: sessionData.form_id,
     user_id: req.session.profile.id,
-    name: sessionData.name,
-    email: sessionData.email,
-    redirect_url: sessionData.redirect_url,
+    name: req.body.name,
+    email: req.body.email,
+    redirect: req.body.redirect === "Yes",
+    redirect_url: req.body.redirect_url,
     created_at: now,
-    code: sessionData.code,
+    code: req.body.code,
     confirmed: false,
   })
   entry.save()
@@ -54,7 +56,10 @@ module.exports = (app, route) => {
   route.draw(app)
     .get(checkAuth,
       (req, res) => {
-      res.render(name, routeUtils.getViewData(req, {user_name: req.session.profile.displayName}))
+      res.render(name, routeUtils.getViewData(req, {
+        jsFiles: ['../js/toggle-area.js'],
+        user_name: req.session.profile.displayName,
+      }))
     })
     .post(
       route.applySchema(Schema), 

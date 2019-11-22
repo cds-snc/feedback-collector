@@ -50,15 +50,16 @@
   "form.name.desc": "Form name",
   "form.name.hint": "e.g. PSPC feedback",
   "form.email.hint": "This is where submitted forms will be sent",
-  "form.redirect.desc": "Redirect URL",
-  "form.redirect.hint": "What URL should the user see after they submit your form?",
   "errors.firstname.length": "errors.firstname.length",
   "errors.name.length": "errors.name.length",
-  "errors.redirect.length": "errors.redirect.length",
+  "errors.redirect": "This is required",
   "my-forms.title": "My forms",
   "form.firstname.desc": "form.firstname.desc",
   "validate.title": "Your email address has been confirmed",
   "Add form": "Add form",
   "login.title": "Form Sender",
-  "login": "Sign in"
+  "login": "Sign in",
+  "form.redirect": "Should the respondent be redirected to another page after submitting their form?",
+  "form.redirect_url.desc": "Redirect URL",
+  "form.redirect_url.hint": "What URL should the user see after they submit your form?"
 }

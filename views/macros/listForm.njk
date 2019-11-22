@@ -5,7 +5,10 @@
         <div class="my-0 text-lg text-gray-800">
             <div><span class="font-bold">Form ID: </span>{{form.form_id}}</div>
             <div><span class="font-bold">Email:</span> {{form.email}}</div>
-            <div><span class="font-bold">Redirect URL:</span> {{form.redirect_url}}</div>
+            <div><span class="font-bold">Redirect:</span> {{form.redirect}}</div>
+            {% if form.redirect %}
+                <div><span class="font-bold">Redirect URL:</span> {{form.redirect_url}}</div>
+            {% endif %}
             <div><span class="font-bold">Confirmed?:</span>                     
                 {% if form.confirmed %}
                     Yes

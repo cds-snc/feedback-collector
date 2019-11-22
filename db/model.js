@@ -6,11 +6,12 @@ const formSchema = new mongoose.Schema(
     user_id: String,
     name: String,
     email: String,
+    redirect: Boolean,
     redirect_url: String,
     created_at: Date,
     code: String,
     confirmed: Boolean,
-  }
+  },
 );
 
 const Form = mongoose.model("Form", formSchema);

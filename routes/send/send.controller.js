@@ -30,8 +30,8 @@ const main = async (req, res, next) => {
     if(err) {
       console.log(err)
     }
-    const { name, email, confirmed } = forms[0]
-    const redirect = forms[0].redirect_url
+    const { name, email, confirmed, redirect } = forms[0]
+    const redirect_url = forms[0].redirect_url
     const content = Object.keys(body).map((key, _index) => `- ${key}: ${body[key]}`).join("\n");
     var options = {}
     if (confirmed) {
@@ -46,7 +46,13 @@ const main = async (req, res, next) => {
 
     notifyClient.sendEmail(templateId, email, options);
 
-    return res.redirect(redirect)
+    if (redirect) {
+      return res.redirect(redirect_url)
+    }
+    return res.json({
+        success: true,
+        message: "Success!",
+    });
   })
 }
 

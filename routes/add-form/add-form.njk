@@ -16,7 +16,12 @@
             
             {{ textInput('name', 'form.name.desc', {hint: 'form.name.hint', required: true}) }}
             {{ textInput('email', 'form.email.desc', {hint: 'form.email.hint', required: true}) }}
-            {{ textInput('redirect_url', 'form.redirect.desc', {hint: 'form.redirect.hint', required: true}) }}
+            <div class="toggle-area">
+                {{ radioButtons('redirect',  { 'on':'Yes', 'off':'No'}, data.redirect, 'form.redirect', errors, { required: true }) }}
+            </div>
+            <div class="redirect-toggled hidden" >
+                {{ textInput('redirect_url', 'form.redirect_url.desc', {hint: 'form.redirect_url.hint'}) }}
+            </div>
             {{ formButtons(submitButtonText = 'Add form', cancelUrl = 'my-forms') }}
         </form>
     </div>
