@@ -7,11 +7,6 @@ const formVals = [
     after: { phone: '613-111-1111' },
   },
   {
-    name: 'but NOT the _csrf key',
-    before: { phone: '613-111-1111', _csrf: '123' },
-    after: { phone: '613-111-1111' },
-  },
-  {
     name: 'but NOT the redirect key',
     before: { phone: '613-111-1111', redirect: '/end' },
     after: { phone: '613-111-1111' },
