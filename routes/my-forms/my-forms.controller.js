@@ -1,10 +1,6 @@
 const { routeUtils, getClientJs, checkAuth } = require('./../../utils')
 const { Form } = require('../../db/model')
 
-// const deleteForm = (req, res) => {
-  // req.body
-// }
-
 module.exports = (app, route) => {
   const name = route.name
 
@@ -24,7 +20,4 @@ module.exports = (app, route) => {
       })
       
     })
-    // .post(
-    //   deleteForm
-    // )
 }
