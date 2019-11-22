@@ -14,6 +14,13 @@ const main = async (req, res, next) => {
   }
   const body = req.body
 
+  // remove keys that start with an _, like _csrf
+  Object.keys(body)
+    .filter(x => x[0] === "_")
+    .forEach(x => {
+      delete body[x];
+    })
+
   const responseSchema = new mongoose.Schema({
     response: Object,
     form_id: String,
@@ -21,7 +28,7 @@ const main = async (req, res, next) => {
   
   const Response = mongoose.model("Response", responseSchema);
   const entry = new Response({
-    response: req.body,
+    response: body,
     form_id: req.query.id,
   })
   entry.save()
