@@ -15,13 +15,12 @@ module.exports = (app, route) => {
   .get(
     checkAuth,
     (req, res) => {
-      // var sessionData = routeUtils.getViewData(req).data;
       const js = getClientJs(req, route.name)
       Form.find({ 'user_id': req.session.profile.id }).exec(function (err, forms) {
         if(err) {
           console.log(err)
         }
-        res.render(name, routeUtils.getViewData(req, {forms: forms, jsFiles: js ? [js] : false }))
+        res.render(name, routeUtils.getViewData(req, {forms: forms, user_name: req.session.profile.displayName, jsFiles: js ? [js] : false }))
       })
       
     })

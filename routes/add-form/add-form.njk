@@ -1,7 +1,12 @@
 {% extends "base.njk" %}
 
 {% block content %}
-    <a href="/logout">Logout</a>
+    <div>
+        <div>Logged in as {{ user_name }} </div>
+        <a href="my-forms">My forms</a> | 
+        <a href="/logout">Logout</a>
+    </div>
+
 
     <h1>{{ __('add-form.title') }}</h1>
 

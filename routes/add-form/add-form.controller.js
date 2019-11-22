@@ -54,7 +54,7 @@ module.exports = (app, route) => {
   route.draw(app)
     .get(checkAuth,
       (req, res) => {
-      res.render(name, routeUtils.getViewData(req, {}))
+      res.render(name, routeUtils.getViewData(req, {user_name: req.session.profile.displayName}))
     })
     .post(
       route.applySchema(Schema), 
