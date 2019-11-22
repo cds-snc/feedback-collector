@@ -6,9 +6,7 @@ module.exports = (app, route) => {
 
   route.draw(app)
     .get(async (req, res) => {
-      console.log("hi")
       if (!req.query.code) {
-        console.log("a")
         res.render('404')
         return
       }
@@ -21,7 +19,6 @@ module.exports = (app, route) => {
         nForms = forms.length
       })
       if (nForms < 1) {
-        console.log("b")
         res.render('404')
         return
       }

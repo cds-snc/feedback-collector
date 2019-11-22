@@ -2,7 +2,6 @@
 const routes = [
   { name: 'add-form', path: { en: '/add-form', fr: '/fr-add-form' } },
   { name: 'my-forms', path: { en: '/my-forms', fr: '/fr-my-forms' } },
-  { name: 'personal', path: { en: '/personal', fr: '/personnel' } },
   { name: 'validate', path: { en: '/validate', fr: '/fr-validate' } },
   { name: 'send', path: { en: '/send', fr: '/fr-send' } },
   { name: 'login', path: { en: '/login', fr: '/fr-login' } },
