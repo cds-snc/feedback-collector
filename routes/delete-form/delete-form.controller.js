@@ -3,14 +3,10 @@ const { Form } = require('../../db/model')
 
 const deleteForm = async (req, res, next) => {
   if(!req.query.form_id) {
-    console.log("no such form exists")
+    console.log("no form id provided")
     next()
   }
-  await Form.findOneAndDelete({ 'user_id': req.session.profile.id, 'form_id': req.query.form_id }).exec(function (err, forms) {
-    if(err) {
-      console.log(err)
-    }
-  })
+  await Form.findOneAndDelete({ 'user_id': req.session.profile.id, 'form_id': req.query.form_id }).exec()
   next()
 }
 
