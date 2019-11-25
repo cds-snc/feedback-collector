@@ -12,7 +12,7 @@ const saveToDb = async (req, res, next) => {
   saveSessionData(req)
   var sessionData = routeUtils.getViewData(req).data;
   // console.log("session data: ", sessionData)
-  // console.log("req.body: ", req.body)
+  console.log("req.body.email_response: ", req.body.email_response)
   const now = new Date();
   const entry = new Form({
     form_id: sessionData.form_id,
@@ -20,6 +20,7 @@ const saveToDb = async (req, res, next) => {
     name: req.body.name,
     email: req.body.email,
     redirect: req.body.redirect === "Yes",
+    email_response: req.body.email_response === "Yes",
     redirect_url: req.body.redirect_url,
     created_at: now,
     code: req.body.code,

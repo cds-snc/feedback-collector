@@ -13,7 +13,8 @@
     <div>
         <form method="post">
             {{ textInput('name', 'form.name.desc', {hint: 'form.name.hint', required: true}) }}
-            {{ textInput('email', 'form.email.desc', {hint: 'form.email.hint', required: true}) }}
+            {{ textInput('email', 'form.email.desc', { required: true}) }}
+            {{ radioButtons('email_response',  { '1':'Yes', '2':'No'}, data.email_response, 'form.email_response', errors, { required: true }) }}
             <div class="toggle-area">
                 {{ radioButtons('redirect',  { 'on':'Yes', 'off':'No'}, data.redirect, 'form.redirect', errors, { required: true }) }}
             </div>
