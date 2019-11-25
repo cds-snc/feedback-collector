@@ -61,5 +61,7 @@
   "form.redirect": "Should the respondent be redirected to another page after submitting their form?",
   "form.redirect_url.desc": "Redirect URL",
   "form.redirect_url.hint": "What URL should the user see after they submit your form?",
-  "form.email_response": "Would you like responses to your form emailed to you?"
+  "form.email_response": "Would you like responses to your form emailed to you?",
+  "edit-form.title": "edit-form.title",
+  "Save changes": "Save changes"
 }

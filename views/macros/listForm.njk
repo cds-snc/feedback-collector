@@ -24,6 +24,7 @@
             </div>
             <div><span class="font-bold">Created at:</span> <span class="date">{{form.created_at}}</span></div>
             <div><a href="download-responses?form_id={{form.form_id}}" download>Download responses</a></div>
+            <div><a href="edit-form?form_id={{form.form_id}}">Edit form</a></div>
             <div><button onclick="deleteForm('{{form.form_id}}', '{{form.name}}')" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">Delete form</button>
         </div>
         <hr class="list-item-line my-6" />

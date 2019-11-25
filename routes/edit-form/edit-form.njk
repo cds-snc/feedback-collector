@@ -1,0 +1,28 @@
+{% extends "base.njk" %}
+
+{% block content %}
+    <div>
+        <div>Logged in as {{ user_name }} </div>
+        <a href="my-forms">My forms</a> | 
+        <a href="/logout">Logout</a>
+    </div>
+
+
+    <h1>Editing "{{ data.name }}"</h1>
+
+    <div>
+        <form method="post">
+            {{ textInput('name', 'form.name.desc', {hint: 'form.name.hint', required: true}) }}
+            {{ textInput('email', 'form.email.desc', { required: true}) }}
+            {{ radioButtons('email_response',  { '1':'Yes', '2':'No'}, data.email_response, 'form.email_response', errors, { required: true }) }}
+            <div class="toggle-area">
+                {{ radioButtons('redirect',  { 'on':'Yes', 'off':'No'}, data.redirect, 'form.redirect', errors, { required: true }) }}
+            </div>
+            <div class="redirect-toggled hidden" >
+                {{ textInput('redirect_url', 'form.redirect_url.desc', {hint: 'form.redirect_url.hint'}) }}
+            </div>
+            {{ formButtons(submitButtonText = 'Save changes', cancelUrl = 'my-forms') }}
+        </form>
+    </div>
+
+{% endblock %}

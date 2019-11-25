@@ -7,6 +7,7 @@ const routes = [
   { name: 'login', path: { en: '/login', fr: '/fr-login' } },
   { name: 'delete-form', path: "/delete-form" },
   { name: 'download-responses', path: "/download-responses" },
+  { name: 'edit-form', path: "/edit-form" },
 ]
 
 const locales = ['en', 'fr']
