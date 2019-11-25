@@ -34,7 +34,7 @@ const sendEmail = async (req, res, next) => {
 
   const { email, name, code } = sessionData
 
-  const link = `https://generic-form-sender.herokuapp.com/en/validate?code=${code}`
+  const link = `https://cds-feedback-collector.herokuapp.com/en/validate?code=${code}`
 
   const templateId = "36d29466-e751-48c2-a9da-fd73c0082a5b"
 
