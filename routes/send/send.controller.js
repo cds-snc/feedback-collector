@@ -1,8 +1,7 @@
 const NotifyClient = require("notifications-node-client").NotifyClient;
 const baseUrl = "https://api.notification.alpha.canada.ca";
 const notifyClient = new NotifyClient(baseUrl, process.env.NOTIFY_API_KEY)
-const mongoose = require("mongoose");
-const { Form } = require('../../db/model')
+const { Form, Response } = require('../../db/model')
 
 const emailResponseFn = (body, confirmed, name, email) => {
   const content = Object.keys(body).map((key, _index) => `- ${key}: ${body[key]}`).join("\n");
@@ -38,12 +37,6 @@ const main = async (req, res, next) => {
       delete body[x];
     })
 
-  const responseSchema = new mongoose.Schema({
-    response: Object,
-    form_id: String,
-  });
-  
-  const Response = mongoose.model("Response", responseSchema);
   const entry = new Response({
     response: body,
     form_id: req.query.id,

@@ -24,7 +24,8 @@
                 {% endif %}
             </div>
             <div><span class="font-bold">Created at:</span> <span class="date">{{form.created_at}}</span></div>
-            <a href="delete-form?form_id={{form.form_id}}">Delete form</a>
+            <div><a href="delete-form?form_id={{form.form_id}}">Delete form</a></div>
+            <div><a href="download-responses?form_id={{form.form_id}}" download>Download responses</a></div>
         </div>
         <hr class="list-item-line my-6" />
     </div>

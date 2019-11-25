@@ -15,7 +15,15 @@ const formSchema = new mongoose.Schema(
   },
 );
 
+const responseSchema = new mongoose.Schema({
+  response: Object,
+  form_id: String,
+});
+
 const Form = mongoose.model("Form", formSchema);
+const Response = mongoose.model("Response", responseSchema);
+
 module.exports = {
     Form,
+    Response,
 }
