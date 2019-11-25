@@ -16,7 +16,12 @@ const mongoose = require('mongoose')
 const passport = require('passport');
 const { initAuth } = require('./utils')
 
-mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true });
+mongoose.connect(process.env.MONGO_URL, { 
+  useNewUrlParser: true, 
+  useUnifiedTopology: true, 
+  useFindAndModify: false, 
+  useCreateIndex: true,
+});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 

@@ -10,15 +10,11 @@ module.exports = (app, route) => {
         res.render('404')
         return
       }
-      var nForms = 0
       console.log(req.query.code)
-      await Form.find({ 'code': req.query.code }, (err, forms) => {
-        if(err) {
-          console.log(err)
-        } 
-        nForms = forms.length
-      })
-      if (nForms < 1) {
+ 
+      var results = await Form.find({ 'code': req.query.code }).exec()
+      if (results.length < 1) {
+        console.log("no form found!")
         res.render('404')
         return
       }
