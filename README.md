@@ -6,9 +6,13 @@
 
 ## Intro 
 
-The Feedback Collector captures form data and i) emails it to you (if you want) and ii) puts it in a database for later analysis. 
+The Feedback Collector captures form data and:
+- emails it to you (if you want), and 
+- puts it in a database for later analysis
 
-The Feedback Collector provides a generic URL endpoint to submit forms to. Depending on your choice it will then i) redirect the user to a page that you specify, or ii) send a json response confirming the data was recieved. 
+The Feedback Collector provides a generic URL endpoint to submit forms to. Depending on your choice it will then:
+- redirect the user to a page that you specify, or 
+- send a json response confirming the data was recieved
 
 To set up, [log in](https://cds-feedback-collector.herokuapp.com/) and go through the steps to add a new form. After confirming your email you can then use the endpoint with the ID generated for your form.
 
