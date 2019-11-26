@@ -62,9 +62,12 @@ app.use(helmet.contentSecurityPolicy({ directives: csp }))
 app.use(compression())
 
 app.get('/logout', (req, res) => {
-  req.logout();
-  req.session = null;
-  res.redirect('/');
+  req.session.destroy(function (err) {
+    if(err) {
+      console.log(err)
+    }
+    res.redirect('/')
+  });
 });
 
 app.get(
