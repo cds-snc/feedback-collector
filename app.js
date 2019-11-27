@@ -14,6 +14,7 @@ const csp = require('./config/csp.config')
 const mongoose = require('mongoose')
 const passport = require('passport');
 const { initAuth } = require('./utils')
+const cors = require("cors")
 
 mongoose.connect(process.env.MONGO_URL, { 
   useNewUrlParser: true, 
@@ -41,6 +42,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser(process.env.app_session_secret))
 app.use(require('./config/i18n.config').init)
+app.use(cors())
 
 // in production: use redis for sessions
 // but this works for now
