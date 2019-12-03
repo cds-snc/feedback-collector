@@ -28,10 +28,9 @@ const main = async (req, res, next) => {
     res.set('Access-Control-Max-Age', '3600');
     res.status(204).send('');
   }
-  const body = req.body
-
+  var body = req.body
   // remove keys that start with an _, like _csrf
-  Object.keys(body)
+  Object.keys(req.body)
     .filter(x => x[0] === "_")
     .forEach(x => {
       delete body[x];
@@ -44,7 +43,6 @@ const main = async (req, res, next) => {
   entry.save()
 
   var forms = await Form.find({ form_id: req.query.id }).exec()
-  console.log(forms)
   const { name, email, confirmed, redirect } = forms[0]
   const redirectUrl = forms[0].redirect_url
   var emailResponse;
