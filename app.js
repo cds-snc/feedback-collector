@@ -64,12 +64,9 @@ app.use(helmet.contentSecurityPolicy({ directives: csp }))
 app.use(compression())
 
 app.get('/logout', (req, res) => {
-  req.session.destroy(function (err) {
-    if(err) {
-      console.log(err)
-    }
-    res.redirect('/')
-  });
+  req.session.token = null
+  req.session.profile = null
+  res.redirect('/')
 });
 
 app.get(
@@ -82,11 +79,16 @@ app.get(
 app.get(
   "/auth/google/callback",
   passport.authenticate("google", { failureRedirect: "/auth/google" }),
-  function(req, res) {
+  (req, res) => {
     // Successful authentication, redirect home.
     req.session.profile = req.user.profile;
     req.session.token = req.user.token;
-    res.redirect("/");
+    req.session.save((err) => {
+      if(err) {
+        console.log("error!!!!!!!", err)
+      }
+      res.redirect("/");
+    })
   },
 );
 
